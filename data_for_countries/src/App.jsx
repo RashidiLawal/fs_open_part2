@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ShowCountryView from "./components/index.jsx";
+import './App.css';
+
 
 // const ShowCountryView = ({country, defaultShow=false}) =>{
 //   const[show, setShow]= useState(false)
@@ -77,18 +79,21 @@ function App() {
 
 
   return (
-    <div>
-      <form onSubmit={handleCountrySearch} >
-        find countries
+    <div className="container">
+      <form onSubmit={handleCountrySearch} class='border-lime-400'>
+        <header className="input" >
+          find countries
+        </header>
         <input
           type="search"
           placeholder="search"
           value={query}
           onChange={handleCountrySearch}
+          className="inputer"
         />
       </form>
       <div>
-        { countryToShow.length === 0 ? "Type something to search" : countryToShow.length === 1 ? (
+        { countryToShow.length === 0 ? <p className="para">Type something to search</p> : countryToShow.length === 1 ? (
           <div>
             {countryToShow.map((country, countryIndex) => (
             <ShowCountryView defaultShow={true} country={country} key={`key_${countryIndex}`}/>
@@ -100,7 +105,7 @@ function App() {
         countryToShow.map((country, countryIndex) => 
              <ShowCountryView country={country} key={`key_${countryIndex}`}/>
         
-      ) : ( <p> Too many matches, specify another filter</p>)
+      ) : ( <p className="para"> Too many matches, specify another filter</p>)
       }
       </div>
     </div>

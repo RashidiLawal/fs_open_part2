@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -39,4 +39,34 @@
 
 button {
   font-size: calc(10px + 2vmin);
+} */
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center; 
+  
+  .input {
+    color: #ce2db3;
+    text-transform: capitalize;
+    text-align: center;
+    font-size: larger;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  .inputer {
+    color: #230fda;
+    font-size: larger;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+    margin-top: 2rem;
+
+  }
+  .para {
+    color: #201612;
+    text-transform: capitalize;
+    font-size: larger;
+
+  }
 }

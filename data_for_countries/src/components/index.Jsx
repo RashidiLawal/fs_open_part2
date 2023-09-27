@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from 'react'
 import axios from 'axios'
+import './showCountry.css'
 
 
 const ShowCountryView = ({country, defaultShow=false}) => {
@@ -17,26 +18,28 @@ const ShowCountryView = ({country, defaultShow=false}) => {
        }, [countryCapital]);
 
   return (
-    <>
+  <div className="container">
     {
       show||defaultShow ? (<div>
-      <p>{country["name"].common}</p>
-      <p>{country["capital"][0]}</p>
-      <p>{country["area"]}</p>
-      <p>{ typeof country.languages ==="object"?  Object.values(country["languages"]).map(val => val): country.languages}</p>
+      <p className='for_country'>{country["name"].common}</p>
+      <p className='for_country'>{country["capital"][0]}</p>
+      <p className='for_country'>{country["area"]}</p>
+      <p className='for_country'>{ typeof country.languages ==="object"?  Object.values(country["languages"]).map(val => val): country.languages}</p>
       <p>{country["flag"]}</p>
       weather
       {
-        weathers.current && <> <p>{weathers.current.temperature}oC</p>
+        weathers.current &&
+        <>
+        <p>{weathers.current.temperature}oC</p>
         <img src={weathers.current.weather_icons[0]} alt="" />
-  </>
+        </>
       }
     </div>):( <div> <span>{country["name"].common}</span>
-      <button className='button' onClick={()=>setShow(true)}>show</button></div>
+      <button className='btn' onClick={()=>setShow(true)}>show</button></div>
     )
   
     }
-  </>
+  </div>
   )
 }
 
