@@ -54,6 +54,7 @@ button {
     text-align: center;
     font-size: larger;
     font-family: 'Courier New', Courier, monospace;
+    margin-top: 3rem;
   }
   .inputer {
     color: #230fda;
@@ -61,6 +62,7 @@ button {
     font-family: 'Courier New', Courier, monospace;
     font-size: larger;
     margin-top: 2rem;
+    text-transform: capitalize;
 
   }
   .para {
