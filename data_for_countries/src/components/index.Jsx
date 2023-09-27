@@ -1,5 +1,6 @@
 import React,{ useState, useEffect } from 'react'
 import axios from 'axios'
+import './country.scss'
 
 
 const ShowCountryView = ({country, defaultShow=false}) => {
@@ -32,7 +33,7 @@ const ShowCountryView = ({country, defaultShow=false}) => {
   </>
       }
     </div>):( <div> <span>{country["name"].common}</span>
-      <button onClick={()=>setShow(true)}>show</button></div>
+      <button className='button' onClick={()=>setShow(true)}>show</button></div>
     )
   
     }

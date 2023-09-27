@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import ShowCountryView from "./components/index.Jsx";
+import ShowCountryView from "./components/index.jsx";
 
 // const ShowCountryView = ({country, defaultShow=false}) =>{
 //   const[show, setShow]= useState(false)
