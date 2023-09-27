@@ -17,6 +17,10 @@ const ShowCountryView = ({country, defaultShow=false}) => {
         });
        }, [countryCapital]);
 
+       const handleShow = () => {
+        setShow(!show)
+       }
+
   return (
   <div className="container">
     {
@@ -24,7 +28,8 @@ const ShowCountryView = ({country, defaultShow=false}) => {
       <p className='for_country'>{country["name"].common}</p>
       <p className='for_country'>{country["capital"][0]}</p>
       <p className='for_country'>{country["area"]}</p>
-      <p className='for_country'>{ typeof country.languages ==="object"?  Object.values(country["languages"]).map(val => val): country.languages}</p>
+      <p className='for_country'>{ typeof country.languages ==="object"?  Object.values(country["languages"]).map(val => val): country.languages}
+      </p>
       <p>{country["flag"]}</p>
       weather
       {
@@ -35,7 +40,7 @@ const ShowCountryView = ({country, defaultShow=false}) => {
         </>
       }
     </div>):( <div> <span>{country["name"].common}</span>
-      <button className='btn' onClick={()=>setShow(true)}>show</button></div>
+      <button className='btn' onClick={() => handleShow()}>show</button></div>
     )
   
     }
