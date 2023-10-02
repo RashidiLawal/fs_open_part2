@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ShowCountryView from "./components/index.jsx";
-import './App.css';
-
+import "./App.css";
 
 // const ShowCountryView = ({country, defaultShow=false}) =>{
 //   const[show, setShow]= useState(false)
@@ -11,14 +10,11 @@ import './App.css';
 
 //   useEffect(() => {
 //     axios.get(`http://api.weatherstack.com/current?access_key=f2585cd8464830c185d225a7ff49012e&query=${country.capital[0]}`).then((response) => {
-      
+
 //     console.log(response.data)
 //     setweathers(response.data)
 //     });
 //    }, [countryCapital]);
-
-    
-
 
 //   return (
 //     <>
@@ -38,10 +34,10 @@ import './App.css';
 //     </div>):( <div> <span>{country["name"].common}</span>
 //       <button onClick={()=>setShow(true)}>show</button></div>
 //     )
-  
+
 //     }
 //   </>
- 
+
 // );
 
 // }
@@ -50,25 +46,21 @@ function App() {
   const [countries, setCountries] = useState([]);
   const [query, setQuery] = useState("");
   const [show, setShow] = useState(null);
-  
 
   const handleCountrySearch = (e) => {
-    setQuery(e.target.value)
+    setQuery(e.target.value);
   };
 
- 
   const filteredCountry = countries.filter((country) =>
-  country.name.common
-    .toLowerCase()
-    .includes(query.trim().toLowerCase())
-);
+    country.name.common.toLowerCase().includes(query.trim().toLowerCase())
+  );
 
   const showCountry = (country) => {
     setShow(country["name"].common);
     ShowCountryView(country);
   };
- 
-  const countryToShow=query.trim()? filteredCountry :[]
+
+  const countryToShow = query.trim() ? filteredCountry : [];
 
   useEffect(() => {
     axios.get("https://restcountries.com/v3.1/all").then((response) => {
@@ -77,13 +69,10 @@ function App() {
     });
   }, []);
 
-
   return (
     <div className="container">
-      <form onSubmit={handleCountrySearch} class='border-lime-400'>
-        <header className="input" >
-          find countries
-        </header>
+      <form onSubmit={handleCountrySearch} className="border-lime-400">
+        <header className="input">find countries</header>
         <input
           type="search"
           placeholder="search"
@@ -93,20 +82,25 @@ function App() {
         />
       </form>
       <div>
-        { countryToShow.length === 0 ? <p className="para">Type something to search</p> : countryToShow.length === 1 ? (
+        {countryToShow.length === 0 ? (
+          <p className="para">Type something to search</p>
+        ) : countryToShow.length === 1 ? (
           <div>
             {countryToShow.map((country, countryIndex) => (
-            <ShowCountryView defaultShow={true} country={country} key={`key_${countryIndex}`}/>
-
+              <ShowCountryView
+                defaultShow={true}
+                country={country}
+                key={`key_${countryIndex}`}
+              />
             ))}
-            
           </div>
-        ): countryToShow.length > 1 && countryToShow.length < 10 ? 
-        countryToShow.map((country, countryIndex) => 
-             <ShowCountryView country={country} key={`key_${countryIndex}`}/>
-        
-      ) : ( <p className="para"> Too many matches, specify another filter</p>)
-      }
+        ) : countryToShow.length > 1 && countryToShow.length < 10 ? (
+          countryToShow.map((country, countryIndex) => (
+            <ShowCountryView country={country} key={`key_${countryIndex}`} />
+          ))
+        ) : (
+          <p className="para"> Too many matches, specify another filter</p>
+        )}
       </div>
     </div>
   );
