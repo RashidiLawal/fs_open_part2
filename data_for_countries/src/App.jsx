@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import ShowCountryView from "./components/index.jsx";
+import { Api2nd } from "./utilities/Api.jsx"; 
 import "./App.css";
 
 // const ShowCountryView = ({country, defaultShow=false}) =>{
@@ -63,7 +64,7 @@ function App() {
   const countryToShow = query.trim() ? filteredCountry : [];
 
   useEffect(() => {
-    axios.get("https://restcountries.com/v3.1/all").then((response) => {
+    axios.get(`${Api2nd}`).then((response) => {
       setCountries(response.data);
       console.log(response.data);
     });

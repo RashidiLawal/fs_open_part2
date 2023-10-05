@@ -2,6 +2,9 @@ import React from "react";
 import ShowCountryView from "./index";
 import { render, wait } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import Api from "../utilities/Api";
+
+jest.mock('../utilities/Api.jsx')
 
 describe("Testing ShowCountryView Component", () => {
   it("checking for country's name", () => {

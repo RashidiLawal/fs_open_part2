@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Api from "../utilities/Api";
 import "./showCountry.css";
 
 const ShowCountryView = ({ country, defaultShow = false }) => {
@@ -10,7 +11,7 @@ const ShowCountryView = ({ country, defaultShow = false }) => {
   useEffect(() => {
     axios
       .get(
-        `http://api.weatherstack.com/current?access_key=f2585cd8464830c185d225a7ff49012e&query=${country.capital[0]}`
+        `${Api}/current?access_key=f2585cd8464830c185d225a7ff49012e&query=${country.capital[0]}`
       )
       .then((response) => {
         console.log(response.data);
