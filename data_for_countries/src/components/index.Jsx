@@ -23,7 +23,7 @@ const ShowCountryView = ({ country, defaultShow = false }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container" data-testid='hodiv'>
       {show || defaultShow ? (
         <div>
           <p className="for_country" data-testid='tesst'>
@@ -47,7 +47,7 @@ const ShowCountryView = ({ country, defaultShow = false }) => {
               <p data-testid='wetest'>
                 {weathers.current.temperature}oC
               </p>
-              <img data-testid='imatest' src={weathers.current.weather_icons[0]} alt="" />
+              <img data-testid='imatest' src={weathers.current.weather_icons[0]} alt="weather icon" />
             </>
           )}
         </div>
