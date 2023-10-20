@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Api from "../utilities/Api";
-import "./showCountry.css";
+import "./Countries.css";
 
-const ShowCountryView = ({ country, defaultShow = false }) => {
+const Countries = ({ country, defaultShow = false }) => {
   const [show, setShow] = useState(false);
   const [weathers, setweathers] = useState({});
   const countryCapital = country.capital[0];
@@ -67,4 +67,4 @@ const ShowCountryView = ({ country, defaultShow = false }) => {
   );
 };
 
-export default ShowCountryView;
+export default Countries;
