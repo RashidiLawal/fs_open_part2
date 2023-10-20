@@ -9,14 +9,15 @@ const Countries = ({ country, defaultShow = false }) => {
   const countryCapital = country.capital[0];
 
   useEffect(() => {
-    axios
-      .get(
-        `${Api}/current?access_key=f2585cd8464830c185d225a7ff49012e&query=${country.capital[0]}`
-      )
-      .then((response) => {
-        console.log(response.data);
-        setweathers(response.data);
-      });
+    // axios
+    //   .get(
+    //     `${Api}/current?access_key=f2585cd8464830c185d225a7ff49012e&query=${country.capital[0]}`
+    //   )
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     setweathers(response.data);
+    //   });
+    // setweathers()
   }, [countryCapital]);
 
   const handleShow = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import Countries from "./Countries";
-import { render, wait } from "@testing-library/react";
+import { render, wait, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi } from 'vitest'
 
@@ -8,8 +8,9 @@ vi.mock('../utilities/Api.jsx')
 
 describe("Testing Countries Component", () => {
   it("checking for country's name", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('hodiv')).toBe(false);
+    render(<Countries country={{ capital: ['Mogadish'], name: { common: 'Somalia'}} }/>)
+
+    expect(screen.getByTestId('hodiv'));
   });
 
   it("checking for country's name", () => {
