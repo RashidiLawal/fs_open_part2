@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+// import { createRoot } from 'react-dom/client';
 import axios from "axios";
 import Countries from "./components/Countries.jsx";
 import { Api2nd } from "./utilities/Api.jsx"; 
@@ -75,6 +76,7 @@ function App() {
       <form onSubmit={handleCountrySearch} className="border-lime-400">
         <header className="input">find countries</header>
         <input
+          data-testid='input'
           type="search"
           placeholder="search"
           value={query}

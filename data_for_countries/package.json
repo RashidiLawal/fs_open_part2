@@ -14,6 +14,11 @@
     "react-dom": "^18.2.0",
     "sass": "^1.69.4"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "^react-dom/client$": "<rootDir>/node_modules/react-dom/cjs/react-dom-client.production.min.js"
+    }
+  },
   "devDependencies": {
     "@babel/preset-env": "^7.23.2",
     "@babel/preset-react": "^7.22.15",
