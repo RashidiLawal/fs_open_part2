@@ -1,71 +1,118 @@
 import React from "react";
 import Countries from "./Countries";
-import { render, wait, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { vi } from 'vitest'
+import { render, screen } from "@testing-library/react";
+import { beforeEach, describe, vi } from "vitest";
+import "@testing-library/jest-dom";
+import axios from "axios";
 
-vi.mock('../utilities/Api.jsx')
+vi.mock("../utilities/Api.jsx");
+vi.mock("axios");
 
-describe("Testing Countries Component", () => {
-  it("checking for country's name", () => {
-    render(<Countries country={{ capital: ['Mogadish'], name: { common: 'Somalia'}} }/>)
+const mockedAxios = vi.mocked(axios);
 
-    expect(screen.getByTestId('hodiv'));
+describe("Countries", () => {
+  beforeEach(() => {
+    mockedAxios.get.mockResolvedValue({
+      request: {
+        type: "City",
+        query: "Mogadishu, Somalia",
+        language: "en",
+        unit: "m",
+      },
+      location: {
+        name: "Mogadishu",
+        country: "Somalia",
+        region: "Banaadir",
+        lat: "2.067",
+        lon: "45.367",
+        timezone_id: "Africa/Mogadishu",
+        localtime: "2023-10-27 19:51",
+        localtime_epoch: 1698436260,
+        utc_offset: "3.0",
+      },
+      current: {
+        observation_time: "04:51 PM",
+        temperature: 27,
+        weather_code: 116,
+        weather_icons: [
+          "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png",
+        ],
+        weather_descriptions: ["Partly cloudy"],
+        wind_speed: 17,
+        wind_degree: 131,
+        wind_dir: "SE",
+        pressure: 1011,
+        precip: 0,
+        humidity: 79,
+        cloudcover: 29,
+        feelslike: 31,
+        uv_index: 1,
+        visibility: 10,
+        is_day: "no",
+      },
+    });
   });
 
-  it("checking for country's name", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('tesst')).toHaveTextContent('hello');
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
-  it("checking for country's capital", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('test')).toHaveTextContent('hillo');
+  describe("when defaultShow is false", () => {
+    it("should display the name of the country", async () => {
+      render(
+        <Countries
+          defaultShow={false}
+          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+        />
+      );
+
+      expect(await screen.findByText("Somalia")).toBeInTheDocument();
+    });
+
+    it("should not display the capital of the country", () => {
+      render(
+        <Countries
+          defaultShow={false}
+          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+        />
+      );
+
+      expect(screen.queryByText("Mogadishu")).not.toBeInTheDocument();
+    });
   });
 
-  it("checking for country's area", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('testy')).toHaveTextContent('hollo');
-  });
+  describe("when defaultShow is true", () => {
+    it("should display the name of the country", async () => {
+      render(
+        <Countries
+          defaultShow={true}
+          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+        />
+      );
 
-  it("checking for country's languages", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('languages')).toHaveTextContent('wello');
-  });
+      expect(await screen.findByText("Somalia")).toBeInTheDocument();
+    });
 
-  it("checking for country's flag", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('flatest')).toHaveTextContent('mello');
-  });
+    it("should not display the capital of the country", () => {
+      render(
+        <Countries
+          defaultShow={true}
+          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+        />
+      );
 
-  it("checking for country's temperature", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('wetest')).toHaveTextContent('pillo');
-  });
+      expect(screen.queryByText("Mogadishu")).toBeInTheDocument();
+    });
 
-  it("checking for country wether's icon", () => {
-     render(<Countries />)
-    const imgElement = screen.getByAltText('weather icon');
-    expect(imgElement).toBeInTheDocument();
-  });
+    it("should not display the capital of the country", async () => {
+      render(
+        <Countries
+          defaultShow={true}
+          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+        />
+      );
 
-  it("checking for country name's again", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('tesst')).toHaveTextContent('grello');
-  });
-
-  it("checking for boolean value after a click", () => {
-    const {getByTestId} = render(<Countries />)
-    const  button = getByTestId('button')
-    userEvent.click(button)
-    expect(getByTestId('hodiv')).toBe(true);
-  });
-
-  it("checking for boolean value after second click", () => {
-    const {getByTestId} = render(<Countries />)
-    const  button = getByTestId('button')
-    userEvent.click(button)
-    userEvent.click(button)
-    expect(getByTestId('hodiv')).toBe(false);
+      expect(await screen.findByText("27oC")).toBeInTheDocument();
+    });
   });
 });
