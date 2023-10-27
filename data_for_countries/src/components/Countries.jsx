@@ -25,18 +25,21 @@ const Countries = ({ country, defaultShow = false }) => {
   };
 
   return (
-    <div className="container" data-testid='hodiv'>
+    <div className="container">
       {show || defaultShow ? (
         <div>
-          <p className="for_country" data-testid='tesst'>
+          <p className="country">
             {country["name"].common}
           </p>
-          <p className="for_country" data-testid='test'>
+
+          <p className="capital">
             {country["capital"][0]}
           </p>
-          <p className="for_country" data-testid='testy'>
+
+          <p className="for_country">
             {country["area"]}
           </p>
+
           <p className="for_country" data-testid='languages'>
             {typeof country.languages === "object"
               ? Object.values(country["languages"]).map((val) => val)

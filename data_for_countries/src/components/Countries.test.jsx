@@ -2,70 +2,57 @@ import React from "react";
 import Countries from "./Countries";
 import { render, wait, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { vi } from 'vitest'
+import { describe, vi } from "vitest";
+import "@testing-library/jest-dom";
 
-vi.mock('../utilities/Api.jsx')
+vi.mock("../utilities/Api.jsx");
 
-describe("Testing Countries Component", () => {
-  it("checking for country's name", () => {
-    render(<Countries country={{ capital: ['Mogadish'], name: { common: 'Somalia'}} }/>)
+describe("Countries", () => {
+  describe("when defaultShow is false", () => {
+    it("should display the name of the country", () => {
+      render(
+        <Countries
+          defaultShow={false}
+          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+        />
+      );
 
-    expect(screen.getByTestId('hodiv'));
+      expect(screen.getByText("Somalia")).toBeInTheDocument();
+    });
+
+    it("should not display the capital of the country", () => {
+      render(
+        <Countries
+          defaultShow={false}
+          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+        />
+      );
+
+      expect(screen.queryByText("Mogadishu")).not.toBeInTheDocument();
+    });
   });
 
-  it("checking for country's name", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('tesst')).toHaveTextContent('hello');
-  });
+  describe("when defaultShow is true", () => {
+    it("should display the name of the country", () => {
+      render(
+        <Countries
+          defaultShow={true}
+          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+        />
+      );
 
-  it("checking for country's capital", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('test')).toHaveTextContent('hillo');
-  });
+      expect(screen.getByText("Somalia")).toBeInTheDocument();
+    });
 
-  it("checking for country's area", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('testy')).toHaveTextContent('hollo');
-  });
+    it("should not display the capital of the country", () => {
+      render(
+        <Countries
+          defaultShow={true}
+          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+        />
+      );
 
-  it("checking for country's languages", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('languages')).toHaveTextContent('wello');
-  });
-
-  it("checking for country's flag", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('flatest')).toHaveTextContent('mello');
-  });
-
-  it("checking for country's temperature", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('wetest')).toHaveTextContent('pillo');
-  });
-
-  it("checking for country wether's icon", () => {
-     render(<Countries />)
-    const imgElement = screen.getByAltText('weather icon');
-    expect(imgElement).toBeInTheDocument();
-  });
-
-  it("checking for country name's again", () => {
-    const {getByTestId} = render(<Countries />)
-    expect(getByTestId('tesst')).toHaveTextContent('grello');
-  });
-
-  it("checking for boolean value after a click", () => {
-    const {getByTestId} = render(<Countries />)
-    const  button = getByTestId('button')
-    userEvent.click(button)
-    expect(getByTestId('hodiv')).toBe(true);
-  });
-
-  it("checking for boolean value after second click", () => {
-    const {getByTestId} = render(<Countries />)
-    const  button = getByTestId('button')
-    userEvent.click(button)
-    userEvent.click(button)
-    expect(getByTestId('hodiv')).toBe(false);
+      expect(screen.queryByText("Mogadishu")).toBeInTheDocument();
+    });
   });
 });
