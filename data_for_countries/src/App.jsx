@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import ShowCountryView from "./components/index.jsx";
+import Countries from "./components/Countries.jsx";
 import { Api2nd } from "./utilities/Api.jsx"; 
 import "./App.css";
 
-// const ShowCountryView = ({country, defaultShow=false}) =>{
+// const Countries = ({country, defaultShow=false}) =>{
 //   const[show, setShow]= useState(false)
 //   const [weathers, setweathers] = useState({});
 //   const countryCapital= country.capital[0]
@@ -58,7 +58,7 @@ function App() {
 
   const showCountry = (country) => {
     setShow(country["name"].common);
-    ShowCountryView(country);
+    Countries(country);
   };
 
   const countryToShow = query.trim() ? filteredCountry : [];
@@ -88,7 +88,7 @@ function App() {
         ) : countryToShow.length === 1 ? (
           <div>
             {countryToShow.map((country, countryIndex) => (
-              <ShowCountryView
+              <Countries
                 defaultShow={true}
                 country={country}
                 key={`key_${countryIndex}`}
@@ -97,7 +97,7 @@ function App() {
           </div>
         ) : countryToShow.length > 1 && countryToShow.length < 10 ? (
           countryToShow.map((country, countryIndex) => (
-            <ShowCountryView country={country} key={`key_${countryIndex}`} />
+            <Countries country={country} key={`key_${countryIndex}`} />
           ))
         ) : (
           <p className="para"> Too many matches, specify another filter</p>
