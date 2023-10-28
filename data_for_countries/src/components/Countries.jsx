@@ -27,8 +27,8 @@ const Countries = ({ country, defaultShow = false }) => {
         <div>
           <p className="country">{country["name"].common}</p>
           <p className="capital">{country["capital"][0]}</p>
-          <p className="for_country">{country["area"]}</p>
-          <p className="for_country" data-testid="languages">
+          <p className="area">{country["area"]}</p>
+          <p className="languages">
             {typeof country.languages === "object"
               ? Object.values(country["languages"]).map((val) => val)
               : country.languages}
