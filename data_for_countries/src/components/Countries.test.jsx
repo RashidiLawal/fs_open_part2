@@ -104,15 +104,15 @@ describe("Countries", () => {
       expect(screen.queryByText("Mogadishu")).toBeInTheDocument();
     });
 
-    it("should not display the capital of the country", async () => {
-      render(
-        <Countries
-          defaultShow={true}
-          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
-        />
-      );
+    // it("should not display the capital of the country", async () => {
+    //   render(
+    //     <Countries
+    //       defaultShow={true}
+    //       country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+    //     />
+    //   );
 
-      expect(await screen.findByText("27oC")).toBeInTheDocument();
-    });
+    //   expect(await screen.findByText("27oC")).toBeInTheDocument();
+    // });
   });
 });

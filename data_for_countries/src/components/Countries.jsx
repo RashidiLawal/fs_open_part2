@@ -11,16 +11,16 @@ const Countries = ({ country, defaultShow = false }) => {
   useEffect(() => {
     axios
       .get(
-        `${Api}/current?access_key=f2585cd8464830c185d225a7ff49012e&query=${country.capital[0]}`
+        `${Api}${country.capital[0]}`
       )
-      .then(response => setWeathers(response))
-      .catch(console.error);
+      .then(response => setWeathers(response.data))     
+      .catch(console.error);     
   }, [countryCapital, setWeathers]);
 
   const handleShow = () => {
     setShow(!show);
   };
-
+  console.log(weathers);
   return (
     <div className="container">
       {show || defaultShow ? (
