@@ -53,7 +53,7 @@ function App() {
     setQuery(e.target.value);
   };
 
-  const filteredCountry = countries.filter((country) =>
+  const filteredCountries = countries.filter((country) =>
     country.name.common.toLowerCase().includes(query.trim().toLowerCase())
   );
 
@@ -62,7 +62,7 @@ function App() {
     CountryInformation(country);
   };
 
-  const countryToShow = query.trim() ? filteredCountry : [];
+  const countriesToShow = query.trim() ? filteredCountries : [];
 
   useEffect(() => {
     axios.get(`${Api2nd}`).then((response) => {
@@ -85,11 +85,11 @@ function App() {
         />
       </form>
       <div>
-        {countryToShow.length === 0 ? (
+        {countriesToShow.length === 0 ? (
           <p className="para">Type something to search</p>
-        ) : countryToShow.length === 1 ? (
+        ) : countriesToShow.length === 1 ? (
           <div>
-            {countryToShow.map((country, countryIndex) => (
+            {countriesToShow.map((country, countryIndex) => (
               <CountryInformation
                 defaultShow={true}
                 country={country}
@@ -97,8 +97,8 @@ function App() {
               />
             ))}
           </div>
-        ) : countryToShow.length > 1 && countryToShow.length < 10 ? (
-          countryToShow.map((country, countryIndex) => (
+        ) : countriesToShow.length > 1 && countriesToShow.length < 10 ? (
+          countriesToShow.map((country, countryIndex) => (
             <CountryInformation country={country} key={`key_${countryIndex}`} />
           ))
         ) : (
