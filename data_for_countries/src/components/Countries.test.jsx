@@ -274,6 +274,17 @@ describe("Countries", () => {
 
       expect(screen.queryByText("Mogadishu")).not.toBeInTheDocument();
     });
+
+    it("should display the area of the country", () => {
+      render(
+        <CountryInformation
+          defaultShow={false}
+          country={{countriesInformation, countriesOtherInformation}}
+        />
+      );
+
+      expect(screen.queryByText(948.0)).toBeInTheDocument();
+    });
   });
 
   describe("when defaultShow is true", () => {
