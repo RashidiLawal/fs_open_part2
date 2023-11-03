@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 // import { createRoot } from 'react-dom/client';
 import axios from "axios";
-import Countries from "./components/Countries.jsx";
+import CountryInformation from "./components/CountryInformation.jsx";
 import { Api2nd } from "./utilities/Api.jsx";
 import "./App.css";
 
@@ -59,7 +59,7 @@ function App() {
 
   const showCountry = (country) => {
     setShow(country["name"].common);
-    Countries(country);
+    CountryInformation(country);
   };
 
   const countryToShow = query.trim() ? filteredCountry : [];
@@ -90,7 +90,7 @@ function App() {
         ) : countryToShow.length === 1 ? (
           <div>
             {countryToShow.map((country, countryIndex) => (
-              <Countries
+              <CountryInformation
                 defaultShow={true}
                 country={country}
                 key={`key_${countryIndex}`}
@@ -99,7 +99,7 @@ function App() {
           </div>
         ) : countryToShow.length > 1 && countryToShow.length < 10 ? (
           countryToShow.map((country, countryIndex) => (
-            <Countries country={country} key={`key_${countryIndex}`} />
+            <CountryInformation country={country} key={`key_${countryIndex}`} />
           ))
         ) : (
           <p className="para"> Too many matches, specify another filter</p>

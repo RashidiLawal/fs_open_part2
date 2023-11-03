@@ -3,7 +3,7 @@ import axios from "axios";
 import Api from "../utilities/Api";
 import "./Countries.css";
 
-const Countries = ({ country, defaultShow = false }) => {
+const CountryInformation = ({ country, defaultShow = false }) => {
   const [show, setShow] = useState(false);
   const [weathers, setWeathers] = useState({});
   const countryCapital = country.capital[0];
@@ -63,4 +63,5 @@ const Countries = ({ country, defaultShow = false }) => {
   );
 };
 
-export default Countries;
+export default CountryInformation;
+// "Access Restricted - Your current Subscription Plan does not support HTTPS Encryption."

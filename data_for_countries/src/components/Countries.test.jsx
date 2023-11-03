@@ -1,11 +1,10 @@
 import React from "react";
-import Countries from "./Countries";
+import CountryInformation from "./CountryInformation";
 import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, vi } from "vitest";
 import "@testing-library/jest-dom";
 import axios from "axios";
 
-vi.mock("../utilities/Api.jsx");
 vi.mock("axios");
 
 const mockedAxios = vi.mocked(axios);
@@ -60,7 +59,7 @@ describe("Countries", () => {
   describe("when defaultShow is false", () => {
     it("should display the name of the country", async () => {
       render(
-        <Countries
+        <CountryInformation
           defaultShow={false}
           country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
         />
@@ -71,7 +70,7 @@ describe("Countries", () => {
 
     it("should not display the capital of the country", () => {
       render(
-        <Countries
+        <CountryInformation
           defaultShow={false}
           country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
         />
@@ -84,7 +83,7 @@ describe("Countries", () => {
   describe("when defaultShow is true", () => {
     it("should display the name of the country", async () => {
       render(
-        <Countries
+        <CountryInformation
           defaultShow={true}
           country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
         />
@@ -95,7 +94,7 @@ describe("Countries", () => {
 
     it("should not display the capital of the country", () => {
       render(
-        <Countries
+        <CountryInformation
           defaultShow={true}
           country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
         />
@@ -106,7 +105,7 @@ describe("Countries", () => {
 
     it("should not display the capital of the country", async () => {
       render(
-        <Countries
+        <CountryInformation
           defaultShow={true}
           country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
         />
