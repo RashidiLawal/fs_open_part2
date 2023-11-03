@@ -91,7 +91,7 @@ function App() {
           <div>
             {countryToShow.map((country, countryIndex) => (
               <Countries
-                // defaultShow={true}
+                defaultShow={true}
                 country={country}
                 key={`key_${countryIndex}`}
               />

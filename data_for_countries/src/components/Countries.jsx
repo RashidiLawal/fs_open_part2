@@ -37,7 +37,7 @@ const Countries = ({ country, defaultShow = false }) => {
           weather
           {weathers?.current && (
             <>
-              <p data-testid="wetest">{`${weathers.current.temperature}oC`}</p>
+              <p data-testid="wetest">{`${weathers.current.temperature}`}oC</p>
               <img
                 data-testid="imatest"
                 src={weathers.current.weather_icons[0]}
