@@ -8,7 +8,7 @@ import axios from "axios";
 vi.mock("axios");
 
 const mockedAxios = vi.mocked(axios);
-
+const countriesData = { capital: ["Mogadishu"], name: { common: "Somalia" } }
 describe("Countries", () => {
   beforeEach(() => {
     mockedAxios.get.mockResolvedValue({
@@ -61,7 +61,7 @@ describe("Countries", () => {
       render(
         <CountryInformation
           defaultShow={false}
-          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+          country={countriesData}
         />
       );
 
@@ -72,7 +72,7 @@ describe("Countries", () => {
       render(
         <CountryInformation
           defaultShow={false}
-          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+          country={countriesData}
         />
       );
 
@@ -85,7 +85,7 @@ describe("Countries", () => {
       render(
         <CountryInformation
           defaultShow={true}
-          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+          country={countriesData}
         />
       );
 
@@ -96,7 +96,7 @@ describe("Countries", () => {
       render(
         <CountryInformation
           defaultShow={true}
-          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+          country={countriesData}
         />
       );
 
@@ -107,7 +107,7 @@ describe("Countries", () => {
       render(
         <CountryInformation
           defaultShow={true}
-          country={{ capital: ["Mogadishu"], name: { common: "Somalia" } }}
+          country={countriesData}
         />
       );
 
