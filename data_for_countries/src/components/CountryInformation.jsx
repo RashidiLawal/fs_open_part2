@@ -13,7 +13,7 @@ const CountryInformation = ({ country, defaultShow = false }) => {
       .get(
         `${Api}${country.capital[0]}`
       )
-      .then(response => setWeathers(response.data))     
+      .then(response => setWeathers(response))     
       .catch(console.error);     
   }, [countryCapital, setWeathers]);
 

@@ -44,7 +44,7 @@ const countriesOtherInformation = {
       ]
   },
   "capital": [
-      "Cockburn Town"
+    "Cockburn Town"
   ],
   "altSpellings": [
       "TC"
@@ -257,33 +257,33 @@ describe("Countries", () => {
       render(
         <CountryInformation
           defaultShow={false}
-          country={countriesInformation}
+          country={countriesOtherInformation}
         />
       );
 
-      expect(await screen.findByText("Somalia")).toBeInTheDocument();
+      expect(await screen.findByText("Turks and Caicos Islands")).toBeInTheDocument();
     });
 
     it("should not display the capital of the country", () => {
       render(
         <CountryInformation
           defaultShow={false}
-          country={countriesInformation}
+          country={countriesOtherInformation}
         />
       );
 
-      expect(screen.queryByText("Mogadishu")).not.toBeInTheDocument();
+      expect(screen.queryByText("Cockburn Town")).not.toBeInTheDocument();
     });
 
-    it("should display the area of the country", () => {
+    it("should not display the area of the country", () => {
       render(
         <CountryInformation
           defaultShow={false}
-          country={{countriesInformation, countriesOtherInformation}}
+          country={ countriesOtherInformation }
         />
       );
 
-      expect(screen.queryByText(948.0)).toBeInTheDocument();
+      expect(screen.queryByText(948.0)).not.toBeInTheDocument();
     });
   });
 
@@ -292,29 +292,29 @@ describe("Countries", () => {
       render(
         <CountryInformation
           defaultShow={true}
-          country={countriesInformation}
+          country={countriesOtherInformation}
         />
       );
 
-      expect(await screen.findByText("Somalia")).toBeInTheDocument();
+      expect(await screen.findByText("Turks and Caicos Islands")).toBeInTheDocument();
     });
 
-    it("should not display the capital of the country", () => {
+    it("should display the capital of the country", () => {
       render(
         <CountryInformation
           defaultShow={true}
-          country={countriesInformation}
+          country={countriesOtherInformation}
         />
       );
 
-      expect(screen.queryByText("Mogadishu")).toBeInTheDocument();
+      expect(screen.queryByText("Cockburn Town")).toBeInTheDocument();
     });
 
     it("should not display the capital of the country", async () => {
       render(
         <CountryInformation
           defaultShow={true}
-          country={countriesInformation}
+          country={countriesOtherInformation}
         />
       );
 
