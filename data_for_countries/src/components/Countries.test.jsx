@@ -52,7 +52,7 @@ const countriesOtherInformation = {
   "region": "Americas",
   "subregion": "Caribbean",
   "languages": {
-      "eng": "English"
+    "eng": "English"
   },
   "translations": {
       "ara": {
@@ -205,7 +205,7 @@ const countriesOtherInformation = {
   }
 }
 
-describe("Countries", () => {
+describe("CountryInformation", () => {
   beforeEach(() => {
     mockedAxios.get.mockResolvedValue({
       request: {
@@ -278,13 +278,35 @@ describe("Countries", () => {
     it("should not display the area of the country", () => {
       render(
         <CountryInformation
-          defaultShow={false}
-          country={ countriesOtherInformation }
+        defaultShow={false}
+        country={ countriesOtherInformation }
         />
       );
 
       expect(screen.queryByText(948.0)).not.toBeInTheDocument();
     });
+
+    it("should not display the language of the country", () => {
+      render(
+        <CountryInformation
+        defaultShow={false}
+        country={ countriesOtherInformation }
+        />
+      );
+
+      expect(screen.queryByText("eng")).not.toBeInTheDocument();
+    });
+
+    // describe("when language is object", () => {
+    //   render (
+    //     <CountryInformation
+    //     defaultShow={false}
+    //     country={ countriesOtherInformation }
+    //     />
+    //   );
+
+    //   expect(screen.findByText("eng")).toBeInTheDocument();
+    // });
   });
 
   describe("when defaultShow is true", () => {
@@ -310,7 +332,40 @@ describe("Countries", () => {
       expect(screen.queryByText("Cockburn Town")).toBeInTheDocument();
     });
 
-    it("should not display the capital of the country", async () => {
+    it("should display the area of the country", async () => {
+      render(
+        <CountryInformation
+          defaultShow={true}
+          country={countriesOtherInformation}
+        />
+      );
+
+      expect(await screen.findByText(948.0)).toBeInTheDocument();
+    });
+
+    it("should display the language of the country", async () => {
+      render(
+        <CountryInformation
+          defaultShow={true}
+          country={countriesOtherInformation}
+        />
+      );
+
+      expect(await screen.findByText("English")).toBeInTheDocument();
+    });
+
+    it("should display the flag of the country", async () => {
+      render(
+        <CountryInformation
+          defaultShow={true}
+          country={countriesOtherInformation}
+        />
+      );
+
+      expect(await screen.findByText("🇹🇨")).toBeInTheDocument();
+    });
+
+    it("should display the temperature of the country", async () => {
       render(
         <CountryInformation
           defaultShow={true}
