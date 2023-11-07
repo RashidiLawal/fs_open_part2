@@ -1,7 +1,7 @@
 import React from "react";
 import CountryInformation from "./CountryInformation";
 import { render, screen } from "@testing-library/react";
-import { UserEvent, userEvent } from "@testing-library/user-event";
+import { UserEvent } from "@testing-library/user-event";
 import { beforeEach, describe, vi } from "vitest";
 import "@testing-library/jest-dom";
 import axios from "axios";

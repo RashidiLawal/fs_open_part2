@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Api from "../utilities/Api";
-import "./Countries.css";
+import "./CountryInformation.css";
 
 const CountryInformation = ({ country, defaultShow = false }) => {
   const [show, setShow] = useState(false);
