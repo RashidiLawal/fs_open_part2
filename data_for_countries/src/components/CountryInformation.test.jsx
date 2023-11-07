@@ -1,6 +1,7 @@
 import React from "react";
 import CountryInformation from "./CountryInformation";
 import { render, screen } from "@testing-library/react";
+import { UserEvent, userEvent } from "@testing-library/user-event";
 import { beforeEach, describe, vi } from "vitest";
 import "@testing-library/jest-dom";
 import axios from "axios";
@@ -9,7 +10,45 @@ vi.mock("axios");
 
 const mockedAxios = vi.mocked(axios);
 
-const countriesInformation = { capital: ["Mogadishu"], name: { common: "Somalia" } }
+const countriesInformation = { 
+  request: {
+    type: "City",
+    query: "Mogadishu, Somalia",
+    language: "en",
+    unit: "m",
+  },
+  location: {
+    name: "Mogadishu",
+    country: "Somalia",
+    region: "Banaadir",
+    lat: "2.067",
+    lon: "45.367",
+    timezone_id: "Africa/Mogadishu",
+    localtime: "2023-10-27 19:51",
+    localtime_epoch: 1698436260,
+    utc_offset: "3.0",
+  },
+  current: {
+    observation_time: "04:51 PM",
+    temperature: 27,
+    weather_code: 116,
+    weather_icons: [
+      "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0004_black_low_cloud.png",
+    ],
+    weather_descriptions: ["Partly cloudy"],
+    wind_speed: 17,
+    wind_degree: 131,
+    wind_dir: "SE",
+    pressure: 1011,
+    precip: 0,
+    humidity: 79,
+    cloudcover: 29,
+    feelslike: 31,
+    uv_index: 1,
+    visibility: 10,
+    is_day: "no",
+  },
+}
 
 const countriesOtherInformation = {
   "name": {
@@ -264,6 +303,17 @@ describe("CountryInformation", () => {
       expect(await screen.findByText("Turks and Caicos Islands")).toBeInTheDocument();
     });
 
+    it("should display the button element", () => {
+      render(
+        <CountryInformation
+          defaultShow={false}
+          country={countriesOtherInformation}
+        />
+      );
+        screen.debug();
+      userEvent.click(screen.getByRole("button"));
+    });
+
     it("should not display the capital of the country", () => {
       render(
         <CountryInformation
@@ -297,16 +347,6 @@ describe("CountryInformation", () => {
       expect(screen.queryByText("eng")).not.toBeInTheDocument();
     });
 
-    // describe("when language is object", () => {
-    //   render (
-    //     <CountryInformation
-    //     defaultShow={false}
-    //     country={ countriesOtherInformation }
-    //     />
-    //   );
-
-    //   expect(screen.findByText("eng")).toBeInTheDocument();
-    // });
   });
 
   describe("when defaultShow is true", () => {
@@ -375,5 +415,16 @@ describe("CountryInformation", () => {
 
       expect(await screen.findByText("27oC")).toBeInTheDocument();
     });
+
+    // it("should display the icon of the country", async () => {
+    //   render(
+    //     <CountryInformation
+    //       defaultShow={true}
+    //       country={countriesOtherInformation}
+    //     />
+    //   );
+
+    //   expect(await screen.findByText("27oC")).toBeInTheDocument();
+    // });
   });
 });

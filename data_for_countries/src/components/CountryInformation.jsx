@@ -51,7 +51,7 @@ const CountryInformation = ({ country, defaultShow = false }) => {
           {" "}
           <span data-testid="common">{country["name"].common}</span>
           <button
-            data-testid="button"
+            type="button"
             className="btn"
             onClick={() => handleShow()}
           >
