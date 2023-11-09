@@ -1,7 +1,7 @@
 import React from "react";
 import CountryInformation from "./CountryInformation";
 import { render, screen } from "@testing-library/react";
-import { UserEvent } from "@testing-library/user-event";
+import UserEvent from "@testing-library/user-event";
 import { beforeEach, describe, vi } from "vitest";
 import "@testing-library/jest-dom";
 import axios from "axios";
@@ -303,15 +303,14 @@ describe("CountryInformation", () => {
       expect(await screen.findByText("Turks and Caicos Islands")).toBeInTheDocument();
     });
 
-    it("should display the button element", () => {
+    it("should display the button element", async () => {
       render(
         <CountryInformation
           defaultShow={false}
           country={countriesOtherInformation}
         />
       );
-        screen.debug();
-      userEvent.click(screen.getByRole("button"));
+     await UserEvent.click(screen.getByRole("button"));
     });
 
     it("should not display the capital of the country", () => {
